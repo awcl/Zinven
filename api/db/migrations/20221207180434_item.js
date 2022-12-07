@@ -7,8 +7,8 @@ exports.up = function(knex) {
     table.increments();
     table.integer('user_id').notNullable();
     table.foreign('user_id').references('user.id');
-    table.string('item_name').notNullable();
-    table.string('description').notNullable();
+    table.string('item_name', 50).notNullable();
+    table.string('description', 500).notNullable();
     table.integer('quantity').notNullable();
   });
 };
