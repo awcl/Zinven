@@ -1,0 +1,24 @@
+body {
+  background-color: #666666;
+}
+
+.App {
+  text-align: center;
+}
+
+.Header {
+  background-color: #2e2e2e;
+  min-height: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Header-Title {
+  margin-left: 2vh;
+  justify-content: right;
+}
