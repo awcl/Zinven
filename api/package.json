@@ -2,9 +2,9 @@
   "name": "api",
   "version": "1.0.0",
   "description": "Zinventory Backend",
-  "main": "App.js",
+  "main": "index.js",
   "scripts": {
-    "start": "npm i && knex migrate:rollback && knex migrate:latest",
+    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && node index.js",
     "test": "jest"
   },
   "author": "https://github.com/awcl",

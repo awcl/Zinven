@@ -1,13 +1,11 @@
-// Update with your config settings.
-
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 
 const HOST = process.env.DATABASE_HOST || '127.0.0.1';
 const USER = process.env.POSTGRES_USER || 'postgres';
-const PASS = process.env.POSTGRES_PASS || 'docker';
-const DB = process.env.POSTGRES_DB || 'docker_db';
+const PASS = process.env.POSTGRES_PASSWORD || 'docker';
+const DB = process.env.POSTGRES_DB || 'zinven_db';
 const PORT = process.env.PORT || 5432;
 
 module.exports = {
@@ -19,6 +17,12 @@ module.exports = {
       password: PASS,
       database: DB,
       port: PORT
+    },
+    migrations: {
+      directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds'
     }
   },
   production: {
