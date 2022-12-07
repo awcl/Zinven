@@ -1,8 +1,8 @@
 version: '3'
 volumes:
-  zinven_store:
+  store:
 networks:
-  zinven_net:
+  net:
     driver: bridge
 services:
   db:
@@ -11,9 +11,9 @@ services:
     ports:
       - '5432:5432'
     networks:
-      - zinven_net
+      - net
     volumes:
-      - zinven_store:/var/lib/postgresql/data
+      - store:/var/lib/postgresql/data
     environment:
       - DATABASE_HOST=127.0.0.1
       - POSTGRES_USER=postgres
@@ -23,9 +23,9 @@ services:
   api:
     build: api/
     ports:
-      - '8081:8081'
+      - '3001:3001'
     networks:
-      - zinven_net
+      - net
     depends_on:
       - 'db'
     volumes:
@@ -43,7 +43,7 @@ services:
     ports:
     - '3000:3000'
     networks:
-      - zinven_net
+      - net
     depends_on:
       - 'db'
     volumes:

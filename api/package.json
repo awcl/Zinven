@@ -4,7 +4,7 @@
   "description": "Zinventory Backend",
   "main": "index.js",
   "scripts": {
-    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && node index.js",
+    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && nodemon index.js",
     "test": "jest"
   },
   "author": "https://github.com/awcl",

@@ -3,12 +3,13 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  return knex.schema.createTable("item", (table) => {
+  return knex.schema.createTable('item', (table) => {
     table.increments();
-    table.string("user_id").notNullable().references('user.id');
-    table.string("item_name").notNullable();
-    table.string("description").notNullable();
-    table.integer("quantity").notNullable();
+    table.integer('user_id').notNullable();
+    table.foreign('user_id').references('user.id');
+    table.string('item_name').notNullable();
+    table.string('description').notNullable();
+    table.integer('quantity').notNullable();
   });
 };
 
