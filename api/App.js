@@ -19,6 +19,14 @@ app.get('/user', (req, res) => {
   });
 });
 
+app.get('/usernames', (req, res) => {
+  knex('user')
+    .select('username')
+    .then(users => {
+      res.status(200).json(users);
+  });
+});
+
 app.get('/item', (req, res) => {
   knex('item')
     .select('*')
