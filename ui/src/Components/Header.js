@@ -9,9 +9,9 @@ const Header = () => {
       <div className="Header">
         <Link to={'/'} className="Header-Title">Zinven</Link>
         {bool ?
-          (<Link to={'/login'} className="Header-Login">Login</Link>)
-          :
-          (<div className="Header-Logout" onClick={(e) => {navigate('/login')}}>Logout</div>)
+          (<Link to={'/Login'} className="Header-Login">Login</Link>)
+        :
+          (<Link to={'/Login'} className="Header-Logout">Logout</Link>)
         }
       </div>
   );
