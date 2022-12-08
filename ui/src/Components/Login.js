@@ -1,11 +1,17 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
+import Hash from './Hash';
 
 const Login = () => {
   const loginSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.user.value, ' // ', e.target.pass.value);
+    let user = e.target.user.value;
+    let pass = e.target.pass.value;
 
+    if (user !== '' && pass !== '')
+    { // TODO AUTHENTICATE
+      console.log(e.target.user.value, ' // ', e.target.pass.value);
+    }
   }
 
     return (

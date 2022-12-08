@@ -8,7 +8,7 @@ exports.up = function(knex) {
     table.string('first_name', 50).notNullable();
     table.string('last_name', 50).notNullable();
     table.string('username', 50).notNullable().unique();
-    table.string('password_hash', 60).notNullable(); // Max allowed user password of 72
+    table.string('password_hash', 60).notNullable(); // 72 byte input max is pressed down to 60 bytes
   });
 };
 
