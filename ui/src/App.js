@@ -2,6 +2,7 @@ import './App.css';
 import Header from './Components/Header';
 import Home from './Components/Home';
 import Login from './Components/Login';
+import Onboard from '.Components/Onboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Context from './Components/Context';
 
@@ -15,6 +16,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Login" element={<Login />} />
+              <Route path="/Onboard" element={<Onboard />} />
               </Routes>
           </div>
         </Router>
