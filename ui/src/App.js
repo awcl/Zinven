@@ -1,21 +1,24 @@
 import './App.css';
-import Home from './Components/Home';
 import Header from './Components/Header';
+import Home from './Components/Home';
+import Login from './Components/Login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Context from './Components/Context';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Context.Provider value={{}}>
-
-      <Header/>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-        </Routes>
-      </Router>
-    </Context.Provider>
+        <Router>
+          <Header />
+          <div className="Content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Login" element={<Login />} />
+              </Routes>
+          </div>
+        </Router>
+      </Context.Provider>
     </div>
   );
 }

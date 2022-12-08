@@ -1,7 +1,7 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
 
-function Home() {
+const Home = () => {
     return (
         <div className="Home">
           <Link to={'/'}>Hello</Link>

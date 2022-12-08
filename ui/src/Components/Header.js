@@ -1,12 +1,18 @@
 import '../App.css';
+import { useNavigate, Link } from 'react-router-dom';
+import Context from './Context';
 
-function Header() {
-  let bool = false;
+const Header = () => {
+  const navigate =useNavigate();
+  let bool = true;
   return (
       <div className="Header">
-        <div className="Header-Title">Zinven</div>
-        {bool ? (<button className="Header-Login" onClick={(e) => {bool = !bool; console.log(bool)}}>Login</button>) :
-        (<button className="Header-Logout" onClick={(e) => {bool = !bool; console.log(bool)}}>Logout</button>)}
+        <Link to={'/'} className="Header-Title">Zinven</Link>
+        {bool ?
+          (<Link to={'/login'} className="Header-Login">Login</Link>)
+          :
+          (<div className="Header-Logout" onClick={(e) => {navigate('/login')}}>Logout</div>)
+        }
       </div>
   );
 }

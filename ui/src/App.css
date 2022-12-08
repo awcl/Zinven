@@ -2,24 +2,92 @@ body {
   background-color: #666666;
 }
 
-.App {
-}
-
 .Header {
   background-color: #222222;
-  min-height: 1vh;
+  height: 8vh;
+  min-height: 8vh;
   width: 100%;
   display: flex;
   flex-direction: row;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(13px + 2vmin);
+  color: #FFFFFF;
+  vertical-align: middle;
 }
 
 .Header-Title {
-  margin: 1vh;
-  justify-self:left;
+  margin: 1vh 3vh 1vh 3vh;
+  justify-self: left;
+  display: flex;
+  align-items: center;
+  font-size: calc(8px + 2vmin);
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.Header-Title:hover, .Header-Login:hover, .Header-Logout:hover, .Login-Submit-Button:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+
+.Header-Title:active, .Header-Login:active, .Header-Logout:active, .Login-Submit-Button:active {
+  opacity: 60%;
+  scale:90%;
 }
 
 .Header-Login, .Header-Logout {
-  margin: 1vh 1vh 1vh auto;
+  margin: 1vh 3vh 1vh auto;
+  justify-self: left;
+  display: flex;
+  align-items: center;
+  font-size: calc(8px + 2vmin);
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.Content {
+  height: 89vh;
+  margin: 1vh 3vh 1vh 3vh;
+  font-size: calc(8px + 2vmin);
+  align-content:middle;
+}
+
+.Login-Container {
+  background-color: #222222;
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+  border-radius: 1rem;
+  align-self:center;
+}
+
+.Login-Entry {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  justify-self: left;
+}
+
+.Login-Field-User, .Login-Field-Pass {
+ background: transparent;
+ color: #FFFFFF;
+ border: hidden;
+ border-bottom-style: groove
+
+}
+
+.Login-Field-User {
+  margin: 1.5vh 0vh .5vh 4.5vh;
+}
+
+.Login-Field-Pass {
+  margin: .5vh 0vh 1.5vh 4.5vh;
+}
+
+.Login-Submit-Button {
+  color: #FFFFFF;
+  margin: 0vh 0vh 0vh 0vh;
+  width: 35%;
+  font-size: calc(8px + 2vmin);
+  text-align: center;
+  vertical-align: middle;
 }
