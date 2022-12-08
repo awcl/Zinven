@@ -24,12 +24,12 @@ body {
   color: #FFFFFF;
 }
 
-.Header-Title:hover, .Header-Login:hover, .Header-Logout:hover, .Login-Submit-Button:hover {
+.Header-Title:hover, .Header-Login:hover, .Header-Logout:hover, .Login-Submit-Button:hover, .New-Account-Link:hover, .Onboard-Submit-Button:hover, .Password-Requirements:hover {
   cursor: pointer;
   opacity: 60%;
 }
 
-.Header-Title:active, .Header-Login:active, .Header-Logout:active, .Login-Submit-Button:active {
+.Header-Title:active, .Header-Login:active, .Header-Logout:active, .Login-Submit-Button:active, .New-Account-Link:active, .Onboard-Submit-Button:active, .Password-Requirements:active {
   opacity: 60%;
   scale:90%;
 }
@@ -45,49 +45,90 @@ body {
 }
 
 .Content {
-  height: 89vh;
-  margin: 1vh 3vh 1vh 3vh;
+  height: 90vh;
+  padding: 1vh 3vh 1vh 3vh;
   font-size: calc(8px + 2vmin);
-  align-content:middle;
+  display: flex;
+  justify-content: center;
+  background: url('./bg.png');
+  background-size: cover;
 }
 
-.Login-Container {
+
+.Login, .Onboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.Login-Container, .Onboard-Container {
   background-color: #222222;
   display: flex;
   flex-direction: row;
-  width: 50vw;
+  width: 60vw;
   border-radius: 1rem;
-  align-self:center;
 }
 
-.Login-Entry {
+.Login-Entry, .Onboard-Entry {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 70%;
   justify-self: left;
 }
 
-.Login-Field-User, .Login-Field-Pass {
+.Login-Field-User, .Login-Field-Pass, .Onboard-Field-First, .Onboard-Field-Last, .Onboard-Field-User, .Onboard-Field-Pass {
  background: transparent;
  color: #FFFFFF;
  border: hidden;
- border-bottom-style: groove
-
+ border-bottom-style: groove;
+ border-color: #949494;
+ font-size: calc(8px + 2vmin);
+}
+.Login-Field-User:focus, .Login-Field-Pass:focus, .Onboard-Field-First:focus, .Onboard-Field-Last:focus, .Onboard-Field-User:focus, .Onboard-Field-Pass:focus {
+  outline: none;
+  border-color: #FFFFFF;
 }
 
-.Login-Field-User {
+.Login-Field-User, .Onboard-Field-First {
   margin: 1.5vh 0vh .5vh 4.5vh;
 }
 
-.Login-Field-Pass {
-  margin: .5vh 0vh 1.5vh 4.5vh;
+.Onboard-Field-Last, .Onboard-Field-User {
+  margin: .5vh 0vh .5vh 4.5vh;
 }
 
-.Login-Submit-Button {
+.Login-Field-Pass, .Onboard-Field-Pass {
+  margin: .5vh 0vh .5vh 4.5vh;
+}
+
+.Visibility-Container {
+  color:#FFFFFF;
+  font-size: calc(2px + 2vmin);
+  justify-self: left;
+  background: transparent;
+  margin: .5vh 0vh 1.5vh 4.5vh;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.Field-Visibility {
+  filter: invert(100%) grayscale(1);
+  border-radius: 50%;
+}
+
+.New-Account-Link, .Password-Requirements {
+  margin: 0vh 5vh 0vh auto;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.Login-Submit-Button, .Onboard-Submit-Button {
   color: #FFFFFF;
   margin: 0vh 0vh 0vh 0vh;
-  width: 35%;
+  width: 30%;
   font-size: calc(8px + 2vmin);
-  text-align: center;
-  vertical-align: middle;
+  background-color: transparent;
+  border: none;
 }

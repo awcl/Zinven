@@ -38,6 +38,7 @@ services:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=zinven_db
       - POSTGRES_PORT=5432
+      - API_PORT=3001
   ui:
     build: ui/
     ports:
