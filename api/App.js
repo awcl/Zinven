@@ -33,43 +33,43 @@ app.post('/user', async (req, res) => { // New User
     .catch((e) => res.set("Access-Control-Allow-Origin", "*").status(500).end())
 });
 
-app.patch('/user/:id', (req, res) => { // Update User
-  let { id } = req.params;
-  let hashed = await(knex('user').where('username', req.body.username).select('password_hash'));
-  try {
-    hashed = hashed[0].password_hash;
-    compare(req.body.password, hashed)
-      .then(match => {
-        if (match) {
-          knex('user')
-            .where('id', id)
-            .update({
-              first_name: req.body.first_name,
-              last_name: req.body.last_name,
-              username: req.body.username,
-              password_hash: hashed
-            })
-            .then(item => {
-              res.set("Access-Control-Allow-Origin", "*").status(200).end();
-            });
-        } else {
-          res.set("Access-Control-Allow-Origin", "*").status(403).end();
-        }
-      })
-  } catch (e) {
-    res.set("Access-Control-Allow-Origin", "*").status(500).end();
-  }
-});
+// app.patch('/user/:id', (req, res) => { // Update User
+//   let { id } = req.params;
+//   let hashed = await(knex('user').where('username', req.body.username).select('password_hash'));
+//   try {
+//     hashed = hashed[0].password_hash;
+//     compare(req.body.password, hashed)
+//       .then(match => {
+//         if (match) {
+//           knex('user')
+//             .where('id', id)
+//             .update({
+//               first_name: req.body.first_name,
+//               last_name: req.body.last_name,
+//               username: req.body.username,
+//               password_hash: hashed
+//             })
+//             .then(item => {
+//               res.set("Access-Control-Allow-Origin", "*").status(200).end();
+//             });
+//         } else {
+//           res.set("Access-Control-Allow-Origin", "*").status(403).end();
+//         }
+//       })
+//   } catch (e) {
+//     res.set("Access-Control-Allow-Origin", "*").status(500).end();
+//   }
+// });
 
-app.delete('/user/:id', (req, res) => { // Delete User
-  let { id } = req.params;
-  knex('user')
-    .where('id', id)
-    .del()
-    .then(item => {
-      res.set("Access-Control-Allow-Origin", "*").status(410).end();
-    });
-});
+// app.delete('/user/:id', (req, res) => { // Delete User
+//   let { id } = req.params;
+//   knex('user')
+//     .where('id', id)
+//     .del()
+//     .then(item => {
+//       res.set("Access-Control-Allow-Origin", "*").status(410).end();
+//     });
+// });
 
 app.get('/user/id/:username', (req, res) => { // User ID Query
   let { username } = req.params;
