@@ -2,7 +2,7 @@
 ## Overview
 Zinven enables Inventory Manager publication of available assets for other Inventory Managers and Customers, authenticated or not. This affords Customers visibility on currently available assets so they may establish contact with an asset's Inventory Manager to acquire or inquire about them.
 ## Table of Contents
-- [Running](#installation)
+- [Running](#running)
   * [Locally](#locally)
   * [Online](#online)
 - [ERD](#erd)
@@ -12,7 +12,7 @@ Zinven enables Inventory Manager publication of available assets for other Inven
   Requires Docker, also requires patience
 ```bash
 git clone git@github.com:awcl/Zinven.git
-cd Zinven/
+cd Zinven
 docker compose up
 ```
 * [Frontend Default](http://localhost:3000/)
@@ -29,7 +29,7 @@ The production application is hosted by [render](https://render.com/)
 3. As an ***inventory manager*** I want to be able to create a new item so that I can share my item details with the world.
     - After the item is created, the inventory manager should be redirected to their inventory of items.
     - An item displays name, description, and quantity.
-4. As an ***inventory manager*** I want to be able to see a my entire inventory of items.
+4. As an ***inventory manager*** I want to be able to see my entire inventory of items.
     - The inventory of items should display the first 100 characters of each item description, with “...” at the end if the description is longer than 100 characters.
 5. As an ***inventory manager*** I want to be able to see any individual item I have added.
     - The full item information should be displayed.
