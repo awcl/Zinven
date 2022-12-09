@@ -26,14 +26,14 @@ body {
 
 .Header-Title:hover, .Header-Login:hover, .Header-Logout:hover, .Login-Submit-Button:hover,
 .New-Account-Link:hover, .Onboard-Submit-Button:hover, .Password-Requirements:hover,
-.All-Items:hover, .My-Items:hover, .Add-Item:hover {
+.All-Items:hover, .My-Items:hover, .Add-Item:hover, .New-Submit-Button:hover {
   cursor: pointer;
   opacity: 60%;
 }
 
 .Header-Title:active, .Header-Login:active, .Header-Logout:active, .Login-Submit-Button:active,
 .New-Account-Link:active, .Onboard-Submit-Button:active, .Password-Requirements:active,
-.All-Items:active, .My-Items:active, .Add-Item:active {
+.All-Items:active, .My-Items:active, .Add-Item:active, .New-Submit-Button:active {
   opacity: 60%;
   scale:90%;
 }
@@ -66,15 +66,7 @@ body {
 
 }
 
-.Login-Container, .Onboard-Container{
-  background-color: #222222;
-  display: flex;
-  flex-direction: row;
-  width: 60vw;
-  border-radius: 1rem;
-}
-
-.Login-Container, .Onboard-Container{
+.Login-Container, .Onboard-Container {
   background-color: #222222;
   display: flex;
   flex-direction: row;
@@ -90,7 +82,7 @@ body {
   border-radius: 1rem;
 }
 
-.All-Items, .My-Items, .Add-Item{
+.All-Items, .My-Items, .Add-Item {
   margin: 1vh 0vh 1vh 0vh;
   width: 20vw;
   height: 100%;
@@ -100,10 +92,6 @@ body {
   border: none;
 }
 
-/* <button className="All-Items">All Items</button>
-<button className="My-Items">My Items</button>
-<button className="Add-Item">Add Item</button> */
-
 .Login-Entry, .Onboard-Entry {
   display: flex;
   flex-direction: column;
@@ -112,7 +100,8 @@ body {
 }
 
 .Login-Field-User, .Login-Field-Pass, .Onboard-Field-First, .Onboard-Field-Last,
-.Onboard-Field-User, .Onboard-Field-Pass {
+.Onboard-Field-User, .Onboard-Field-Pass, .New-Item-Name, .New-Item-Description,
+.New-Item-Quantity {
  background: transparent;
  color: #FFFFFF;
  border: hidden;
@@ -120,9 +109,23 @@ body {
  border-color: #949494;
  font-size: calc(8px + 2vmin);
 }
+
+/* <div className="New">
+<form className="New-Container" onSubmit={(e) => newSubmit(e)}>
+  <div className="New-Entry">
+    <input id="itemname" className="New-Item-Name" type="text" placeholder="Item Name" onBlur={(e) => trim(e)} />
+    <input id="description" className="New-Item-Description" type="textarea" placeholder="Item Description" onBlur={(e) => trim(e)} />
+    <input id="quantity" className="New-Item-Quantity" type="number" placeholder="Item Quantity" onBlur={(e) => trim(e)}
+      onKeyDown={(e) => {return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(e.code) ? true : !isNaN(Number(e.key)) && e.code!=='Space'}}/>
+  </div>
+  <button className="New-Submit-Button">Create</button>
+</form>
+</div> */
+
 .Login-Field-User:focus, .Login-Field-Pass:focus, .Onboard-Field-First:focus,
 .Onboard-Field-Last:focus, .Onboard-Field-User:focus, .Onboard-Field-Pass:focus,
-.All-Items:focus, .My-Items:focus, .Add-Item:focus {
+.All-Items:focus, .My-Items:focus, .Add-Item:focus, .New-Item-Name:focus,
+ .New-Item-Description:focus, .New-Item-Quantity:focus {
   outline: none;
   border-color: #FFFFFF;
 }

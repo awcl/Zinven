@@ -11,6 +11,7 @@ import Context from './Components/Context';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
+  const [currentId, setCurrentId] = useState(0);
   const [currentFilter, setCurrentFilter] = useState(0);
   const [allItems, setAllItems] = useState([]);
   const [myItems, setMyItems] = useState([]);
@@ -18,7 +19,7 @@ const App = () => {
   return (
     <div className="App">
       <Context.Provider value={{isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser, currentFilter,
-        setCurrentFilter, allItems, setAllItems, myItems, setMyItems}}>
+        setCurrentFilter, allItems, setAllItems, myItems, setMyItems, currentId, setCurrentId}}>
         <Router>
           <Header />
           <div className="Content">

@@ -3,6 +3,7 @@ import ItemFilter from './ItemFilter';
 import Context from './Context';
 import React, { useContext, useEffect } from 'react';
 import config from '../config';
+import New from './New';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Items = () => {
@@ -30,7 +31,7 @@ const Items = () => {
           <div className="Item-Display">
             {currentFilter === 0 && (<p>ALL</p>)}
             {currentFilter === 1 && (<p>MINE</p>)}
-            {currentFilter === 2 && (<p>NEW</p>)}
+            {currentFilter === 2 && (<New/>)}
           </div>
         </div>
     )
