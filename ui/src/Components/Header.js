@@ -10,19 +10,15 @@ const Header = () => {
   let navigate = useNavigate;
 
   useEffect(() => {
-    if (document.cookie || isLoggedIn) {
+    if (document.cookie) {
       setCurrentUser(document.cookie.split('=')[1]);
       setCurrentFilter(1);
+      document.cookie.split('=')[0] === 'Zinven' && setIsLoggedIn(true);
+
     } else {
       setCurrentFilter(0);
     }
   }, [isLoggedIn]);
-
-  useEffect(() => {
-    if (document.cookie) {
-      document.cookie.split('=')[0] === 'Zinven' && setIsLoggedIn(true);
-    }
-  },[]);
 
   const logout = () => {
     document.cookie = `Zinven=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
