@@ -1,6 +1,5 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
-import Hash from './Hash';
 
 const Login = () => {
   const loginSubmit = (e) => {

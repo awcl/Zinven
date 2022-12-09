@@ -7,8 +7,44 @@ const knex = require('knex')(config);
 
 app.use(cors()).use(express.json());
 
+const { hash, compare } = bcrypt;
+const SALTS = 12;
+
 app.get('/', (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*").status(200).send('Got /, nice');
+  res.set("Access-Control-Allow-Origin", "*").status(200).send('Got / 🙂');
+});
+
+app.post ('/user', async (req, res) => {
+  let num = (await knex('user').max('id as max').first()).max + 1;
+  let hashed = await hash(req.body.password, SALTS);
+  console.log(hashed);
+  console.log(typeof hashed);
+  knex('user')
+  .insert(
+    {
+      id: num,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      username: req.body.username,
+      password_hash: hashed
+    }
+  )
+  .then(res.set("Access-Control-Allow-Origin", "*").status(201).end())
+  .catch((e) => res.set("Access-Control-Allow-Origin", "*").status(500).end())
+});
+
+app.post ('/login', async (req, res) => {
+  let hashed = await (knex('user').where('username', req.body.username).select('password_hash'));
+  try {
+    hashed = hashed[0].password_hash;
+    compare(req.body.password, hashed)
+      .then (match => {
+        match ? res.set("Access-Control-Allow-Origin", "*").status(200).end()
+          : res.set("Access-Control-Allow-Origin", "*").status(403).end()
+      })
+  } catch (e) {
+    res.set("Access-Control-Allow-Origin", "*").status(500).end();
+  }
 });
 
 app.get('/users', (req, res) => { // List Users Items All Data
@@ -22,14 +58,24 @@ app.get('/users', (req, res) => { // List Users Items All Data
 app.get('/usernames', (req, res) => { // List All Users Usernames
   knex('user')
     .select('username')
-    .then(users => {
-      res.set("Access-Control-Allow-Origin", "*").status(200).send(users);
+    .then(usernames => {
+      res.set("Access-Control-Allow-Origin", "*").status(200).send(usernames);
   });
 });
 
 app.get('/items', (req, res) => { // List All Items All Data
   knex('item')
     .select('*')
+    .then(items => {
+      res.set("Access-Control-Allow-Origin", "*").status(200).send(items);
+  });
+});
+
+app.get('/items/user/:id', (req, res) => { // List All Items for User by ID
+  let { id } = req.params;
+  knex('item')
+    .select('*')
+    .where('user_id', id)
     .then(items => {
       res.set("Access-Control-Allow-Origin", "*").status(200).send(items);
   });

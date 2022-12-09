@@ -5,7 +5,8 @@ import React, { useState, useContext, useEffect } from 'react'
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Onboard = () => {
-  const [usernameList, setUsernameList] = useState([])
+  const [usernameList, setUsernameList] = useState([]);
+  let passwordReqs = 'Your password must:\n    - Only contain English letters\n    - Be inclusively between 8 and 72 characters in length\n    - Contain at least 1 number\n    - Contain at least 1 uppercase letter\n    - Contain at least 1 lowercase letter\n    - Contain at least 1 of the following special characters ! @ # $ % ^ & *';
 
   useEffect(() => {
     fetch(`${API_URL}/usernames`)
@@ -37,13 +38,17 @@ const createSubmit = (e) => {
     window.alert(`Your username can only be alphanumeric 🙁`);
   } else if (first.length > 50 || last.length > 50 || user.length > 50) {
     window.alert(`First, Last, and Username fields cannot exceed 50 characters 🙁`);
-  } else if ((passOne.length < 8 || passTwo.length < 8) && (passOne.length > 70 || passTwo.length > 70)) {
-    window.alert(`Your password must inclusively be between 8 and 70 characters 🙁`);
-  } else { // Should be good to try to create
-    if (usernameList.indexOf(user) <= -1) { // TODO check if username is taken
+  } else if ((passOne.length < 8 || passTwo.length < 8) && (passOne.length > 72 || passTwo.length > 72)) {
+    window.alert(`Your password must inclusively be between 8 and 72 characters 🙁`);
+  } else {
+    if (usernameList.indexOf(user) <= -1) {
       window.alert(`Your username has already been taken 🙁`);
     } else {
       // TODO push info to db
+      // first_name: req.body.first_name,
+      // last_name: req.body.last_name,
+      // username: req.body.username,
+      // password_hash: hashed
     }
   }
 }
@@ -57,8 +62,6 @@ const visibility = () => {
     document.getElementById('passtwo').type = 'password';
   }
 }
-
-let passwordReqs = 'Your password must:\n    - Only contain English letters\n    - Be inclusively between 8 and 70 characters in length\n    - Contain at least 1 number\n    - Contain at least 1 uppercase letter\n    - Contain at least 1 lowercase letter\n    - Contain at least 1 of the following special characters ! @ # $ % ^ & *';
 
 return (
   <div className="Onboard">
