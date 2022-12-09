@@ -6,7 +6,7 @@ const HOST = process.env.DATABASE_HOST || '127.0.0.1';
 const USER = process.env.POSTGRES_USER || 'postgres';
 const PASS = process.env.POSTGRES_PASSWORD || 'docker';
 const DB = process.env.POSTGRES_DB || 'zinven_db';
-const PORT = process.env.POSTGRES_PORT || 5432;
+const PORT = process.env.PORT || 5432;
 
 module.exports = {
   development: {
