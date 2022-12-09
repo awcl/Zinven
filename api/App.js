@@ -40,7 +40,7 @@ app.patch('/user/:id', (req, res) => { // Update User
     hashed = hashed[0].password_hash;
     compare(req.body.password, hashed)
       .then(match => {
-        if { match } {
+        if (match) {
           knex('user')
             .where('id', id)
             .update({
