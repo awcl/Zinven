@@ -9,7 +9,7 @@ exports.up = function(knex) {
     table.foreign('user_id').references('user.id');
     table.string('item_name', 50).notNullable();
     table.string('description', 500).notNullable();
-    table.integer('quantity').notNullable();
+    table.string('quantity', 50).notNullable();
   });
 };
 
