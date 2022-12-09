@@ -1,31 +1,34 @@
 import '../App.css';
 import { Link, useNavigate } from 'react-router-dom';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Context from './Context';
+import config from '../config';
+const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Header = () => {
-  const { isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser } = useContext(Context);
+  const { isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser, setMyItems, setCurrentFilter } = useContext(Context);
   let navigate = useNavigate;
 
   useEffect(() => {
-    document.cookie && setCurrentUser(document.cookie.split('=')[1])
-    console.log(currentUser);
+    if (document.cookie) {
+      setCurrentUser(document.cookie.split('=')[1]);
+      setCurrentFilter(1);
+    }
   }, [isLoggedIn]);
 
   useEffect(() => {
     if (document.cookie) {
       document.cookie.split('=')[0] === 'Zinven' && setIsLoggedIn(true);
     }
-    console.log(currentUser);
   },[]);
 
   const logout = () => {
     document.cookie = `Zinven=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
     setCurrentUser('');
+    setCurrentFilter(0);
+    setMyItems([]);
     setIsLoggedIn(false);
-    // navigate('/');
-    // flush cookie if written
-    // default view to all items
+    navigate('/');
   }
 
   return (

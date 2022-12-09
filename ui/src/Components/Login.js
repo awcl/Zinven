@@ -1,12 +1,12 @@
 import '../App.css';
 import { Link, useNavigate } from 'react-router-dom';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Context from './Context';
 import config from '../config';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Login = () => {
-  const { isLoggedIn, setIsLoggedIn } = useContext(Context);
+  const { isLoggedIn, setIsLoggedIn, setCurrentFilter } = useContext(Context);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -24,13 +24,18 @@ const Login = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({username: user, password: pass})
-      })
+      }).catch(e => window.alert(e))
       if (res.status === 200) {
         document.cookie = `Zinven=${user}; Path=/;`;
         setIsLoggedIn(true);
+        setCurrentFilter(1);
         navigate('/');
-        // TODO build cookie for session
+      } else {
+        e.target.pass.value = '';
+        window.alert('Incorrect Entry 🙁')
       }
+    } else {
+      window.alert('You have left a field blank 🙁')
     }
   }
 

@@ -33,6 +33,16 @@ app.post ('/user', async (req, res) => {
   .catch((e) => res.set("Access-Control-Allow-Origin", "*").status(500).end())
 });
 
+app.get('/user/id/:username', (req, res) => { // User ID Query
+  let { username } = req.params;
+  knex('user')
+    .select('id')
+    .where('username', username)
+    .then(user => {
+      res.set("Access-Control-Allow-Origin", "*").status(200).send(user);
+    });
+});
+
 app.post ('/login', async (req, res) => {
   let hashed = await (knex('user').where('username', req.body.username).select('password_hash'));
   try {
@@ -66,6 +76,15 @@ app.get('/usernames', (req, res) => { // List All Users Usernames
 app.get('/items', (req, res) => { // List All Items All Data
   knex('item')
     .select('*')
+    .then(items => {
+      res.set("Access-Control-Allow-Origin", "*").status(200).send(items);
+  });
+});
+
+app.get('/items/merged', (req, res) => { // List All Items With Merged Data from User Table
+  knex('item')
+    .join('user', 'user.id', 'item.user_id')
+    .select('item.id', 'user_id', 'user.first_name', 'user.last_name', 'user.username', 'item.description', 'item.quantity')
     .then(items => {
       res.set("Access-Control-Allow-Origin", "*").status(200).send(items);
   });

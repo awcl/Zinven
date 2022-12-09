@@ -1,12 +1,15 @@
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import config from '../config';
+import Context from './Context';
 import React, { useState, useContext, useEffect } from 'react';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Onboard = () => {
   const [usernameList, setUsernameList] = useState([]);
+  const { setIsLoggedIn, setCurrentFilter } = useContext(Context);
   let passwordReqs = 'Your password must:\n    - Only contain English letters\n    - Be inclusively between 8 and 72 characters in length\n    - Contain at least 1 number\n    - Contain at least 1 uppercase letter\n    - Contain at least 1 lowercase letter\n    - Contain at least 1 of the following special characters ! @ # $ % ^ & *';
+  let navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${API_URL}/usernames`)
@@ -20,7 +23,7 @@ const trim = (e) => {
   e.target.value = e.target.value.trim();
 }
 
-const createSubmit = (e) => {
+const createSubmit = async (e) => {
   e.preventDefault();
   let first = e.target.first.value;
   let last = e.target.last.value;
@@ -38,17 +41,32 @@ const createSubmit = (e) => {
     window.alert(`Your username can only be alphanumeric 🙁`);
   } else if (first.length > 50 || last.length > 50 || user.length > 50) {
     window.alert(`First, Last, and Username fields cannot exceed 50 characters 🙁`);
-  } else if ((passOne.length < 8 || passTwo.length < 8) && (passOne.length > 72 || passTwo.length > 72)) {
+  } else if ((passOne.length < 8 && passTwo.length < 8) || (passOne.length > 72 && passTwo.length > 72)) {
     window.alert(`Your password must inclusively be between 8 and 72 characters 🙁`);
   } else {
-    if (usernameList.indexOf(user) <= -1) {
+    if (usernameList.indexOf(user) !== -1) {
       window.alert(`Your username has already been taken 🙁`);
+      console.log(usernameList.indexOf(user));
+      console.log(user);
+      console.log(usernameList)
     } else {
-      // TODO push info to db
-      // first_name: req.body.first_name,
-      // last_name: req.body.last_name,
-      // username: req.body.username,
-      // password_hash: hashed
+      var res = await fetch (`${API_URL}/user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          first_name: first,
+          last_name: last,
+          username: user,
+          password: passOne
+        })
+      }).catch(e => window.alert(e))
+
+      if (res.status === 201) {
+        document.cookie = `Zinven=${user}; Path=/;`;
+        setIsLoggedIn(true);
+        setCurrentFilter(1);
+        navigate('/');
+      }
     }
   }
 }

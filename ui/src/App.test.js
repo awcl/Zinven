@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders', () => {
   render(<App />);
-  const element = screen.getByText(/Zinventory/i);
+  const element = screen.getByText(/Zinven/i);
   expect(element).toBeInTheDocument();
 });
