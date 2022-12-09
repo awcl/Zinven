@@ -174,6 +174,8 @@ app.patch('/item/:id', (req, res) => { // Update Item
     })
     .then(item => {
       res.set("Access-Control-Allow-Origin", "*").status(200).end();
+    }).catch(e => {
+      res.set("Access-Control-Allow-Origin", "*").status(500).end();
     });
 });
 
