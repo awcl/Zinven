@@ -11,11 +11,9 @@ const ItemFilter = () => {
     <>
       {isLoggedIn &&
         <div className="Item-Filter">
-          <div className="Filter-Container">
             <button className="All-Items">All Items</button>
             <button className="My-Items">My Items</button>
             <button className="Add-Item">Add Item</button>
-          </div>
         </div>
       }
     </>
