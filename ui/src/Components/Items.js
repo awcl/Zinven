@@ -21,21 +21,10 @@ const Items = () => {
   ];
 
   useEffect(() => {
-    try {
-      if (document.cookie.split('=')[0] === 'Zinven') {
-        setCurrentFilter(1);
-      } else {
-        setCurrentFilter(0);
-      }
-    } catch (e) {console.log(e)}
-  },[]);
-
-  useEffect(() => {
     fetch(`${API_URL}/items/merged`)
       .then(res => res.json())
       .then(items => setAllItems(items))
       .then(items => {
-        isLoggedIn ? setCurrentFilter(1) : setCurrentFilter(0);
         let filter = [];
         let working = [];
         for (let i = 0; i < allItems.length; i++) {
@@ -44,6 +33,7 @@ const Items = () => {
           }
         }
         setMyItems(filter);
+
         if (currentFilter === 0) {
           filter = allItems;
         }
@@ -58,9 +48,7 @@ const Items = () => {
             quantity: filter[i].quantity,
             description: `${filter[i].description.slice(0,100)}...`})
         }
-        console.log(working);
         setRows(working);
-
       })
       .catch(e => console.log(e))
   }, [currentFilter]);
@@ -71,12 +59,12 @@ const Items = () => {
           <div className="Item-Display">
           {(currentFilter === 0 || currentFilter === 1) &&
           <DataGrid
-            // onCellDoubleClick={(params, event) => {
-            //   if (!event.ctrlKey) {
-            //     event.defaultMuiPrevented = true;
-            //     console.log(params)
-            //   }
-            // }}
+            onCellDoubleClick={(params, event) => {
+              if (!event.ctrlKey) {
+                event.defaultMuiPrevented = true;
+                console.log(params)
+              }
+            }}
             getRowHeight={() => 'auto'}
             className="Result-Table"
             rows={rows}

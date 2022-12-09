@@ -15,14 +15,6 @@ const App = () => {
   const [allItems, setAllItems] = useState([]);
   const [myItems, setMyItems] = useState([]);
 
-  useEffect(() => {
-        if (document.cookie.split('=')[0] === 'Zinven' || isLoggedIn) {
-          setCurrentFilter(1);
-        } else {
-          setCurrentFilter(0);
-        }
-  },[]);
-
   return (
     <div className="App">
       <Context.Provider value={{isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser, currentFilter,

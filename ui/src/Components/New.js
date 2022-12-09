@@ -11,13 +11,6 @@ const New = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    try {
-      if (document.cookie.split('=')[0] === 'Zinven') {
-        setCurrentFilter(1);
-      } else {
-        setCurrentFilter(0);
-      }
-    } catch (e) {console.log(e)}
     fetch(`${API_URL}/user/id/${document.cookie.split('=')[1]}`)
       .then((response) => response.json())
       .then((data) => {
