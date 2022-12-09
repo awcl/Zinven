@@ -1,7 +1,6 @@
 import './App.css';
 import Header from './Components/Header';
 import Items from './Components/Items';
-import Item from './Components/Item';
 import Login from './Components/Login';
 import Onboard from './Components/Onboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -25,7 +24,6 @@ const App = () => {
           <div className="Content">
             <Routes>
               <Route path="/" element={<Items />} />
-              <Route path="/:id" element={<Item />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Onboard" element={<Onboard />} />
               </Routes>

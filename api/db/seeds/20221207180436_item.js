@@ -10,6 +10,6 @@ exports.seed = async function(knex) {
     {id: 3, user_id: 1, item_name: "5C0 Sew On Ocupational Badge", description: "Item conforms to current OCP uniform standards", quantity: "74"},
     {id: 4, user_id: 4, item_name: "Exhaust Sample", description: "Painstakingly collected in trashbags -- I feel light headed", quantity: "2"},
     {id: 5, user_id: 2, item_name: "Coffee", description: "Whole bean and won't taste burnt like Starbucks does", quantity: "565"},
-    {id: 6, user_id: 3, item_name: "Exhaust Sample", description: "Painstakingly collected in trashbags -- I feel light headed", quantity: "2"},
+    {id: 6, user_id: 3, item_name: "Exhaust Sample", description: "Painstakingly collected in trashbags -- I feel light headed", quantity: "2"}
   ]);
 };

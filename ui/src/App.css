@@ -7,6 +7,24 @@ textarea {
   overflow: auto;
 }
 
+.Display {
+  height: auto;
+  overflow:auto;
+}
+
+.Result-Table {
+  margin-top: 1vh;
+  background-color: #222222;
+  border-color: #FFFFFF;
+  font-size: calc(8px + 2vmin);
+  color: #FFFFFF;
+  width: 90vw;
+}
+
+.MuiDataGrid-row:nth-child(odd){
+  background-color: #363636;
+}
+
 .Header {
   background-color: #222222;
   height: 8vh;
@@ -83,13 +101,13 @@ textarea {
   background-color: #222222;
   display: flex;
   flex-direction: row;
-  width: 72vw;
+  width: 90vw;
   border-radius: 1rem;
 }
 
 .All-Items, .My-Items, .Add-Item {
   margin: 1vh 0vh 1vh 0vh;
-  width: 24vw;
+  width: 30vw;
   height: 100%;
   font-size: calc(8px + 2vmin);
   color: #FFFFFF;
