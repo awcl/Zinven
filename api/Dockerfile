@@ -1,6 +1,6 @@
 FROM node:alpine
 WORKDIR /app
 COPY . /app
-EXPOSE 3001
+EXPOSE 8082
 RUN npm i
 CMD npm start
