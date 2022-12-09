@@ -1,10 +1,11 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
+import ItemFilter from './ItemFilter';
 
 const Items = () => {
     return (
         <div className="Items">
-          Items should be here
+          <ItemFilter/>
         </div>
     )
 }

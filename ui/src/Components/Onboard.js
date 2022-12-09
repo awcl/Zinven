@@ -1,7 +1,7 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
 import config from '../config';
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Onboard = () => {

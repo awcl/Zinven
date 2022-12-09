@@ -34,7 +34,7 @@ body {
   scale:90%;
 }
 
-.Header-Login, .Header-Logout {
+.Header-Login, .Header-Logout, .Header-Greeting {
   margin: 1vh 3vh 1vh auto;
   justify-self: left;
   display: flex;

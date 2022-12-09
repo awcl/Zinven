@@ -1,16 +1,42 @@
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
 import Context from './Context';
 
 const Header = () => {
-  let bool = true;
+  const { isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser } = useContext(Context);
+  let navigate = useNavigate;
+
+  useEffect(() => {
+    if (document.cookie) {
+      setCurrentUser(document.cookie.split('=')[1]);
+      // fetch theirs
+    }
+    console.log(currentUser);
+  }, [isLoggedIn]);
+
+
+
+
+
+
+  const logout = () => {
+    document.cookie = `Zinven=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    setCurrentUser('');
+    setIsLoggedIn(false);
+    // navigate('/');
+    // flush cookie if written
+    // default view to all items
+  }
+
   return (
       <div className="Header">
         <Link to={'/'} className="Header-Title">Zinven</Link>
-        {bool ?
-          (<Link to={'/Login'} className="Header-Login">Login</Link>)
+        {currentUser && (<div className="Header-Greeting">Hello {currentUser} 🙂</div>)}
+        {isLoggedIn ?
+          (<Link to={'/'} className="Header-Logout" onClick={() => logout()}>Logout</Link>)
         :
-          (<Link to={'/Login'} className="Header-Logout">Logout</Link>)
+          (<Link to={'/Login'} className="Header-Login">Login</Link>)
         }
       </div>
   );

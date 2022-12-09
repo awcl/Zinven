@@ -1,15 +1,36 @@
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import Context from './Context';
+import config from '../config';
+const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Login = () => {
-  const loginSubmit = (e) => {
+  const { isLoggedIn, setIsLoggedIn } = useContext(Context);
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    isLoggedIn && navigate('/');
+  },[]);
+
+  const loginSubmit = async (e) => {
     e.preventDefault();
     let user = e.target.user.value;
     let pass = e.target.pass.value;
 
     if (user !== '' && pass !== '')
-    { // TODO AUTHENTICATE
-      console.log(e.target.user.value, ' // ', e.target.pass.value);
+    {
+      let res = await fetch (`${API_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({username: user, password: pass})
+      })
+      if (res.status === 200) {
+        document.cookie = `Zinven=${user}; Path=/;`;
+        setIsLoggedIn(true);
+        navigate('/');
+        // TODO build cookie for session
+      }
     }
   }
 
