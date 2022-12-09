@@ -8,7 +8,7 @@ import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Items = () => {
-  const { isLoggedIn, currentUser, currentFilter, allItems, setAllItems, myItems, setMyItems } = useContext(Context);
+  const { isLoggedIn, currentUser, currentFilter, allItems, setAllItems, myItems, setMyItems, setCurrentFilter } = useContext(Context);
   const [rows, setRows] = useState([]);
 
   const columns: GridColDef[] = [
@@ -21,10 +21,21 @@ const Items = () => {
   ];
 
   useEffect(() => {
+    try {
+      if (document.cookie.split('=')[0] === 'Zinven') {
+        setCurrentFilter(1);
+      } else {
+        setCurrentFilter(0);
+      }
+    } catch (e) {console.log(e)}
+  },[]);
+
+  useEffect(() => {
     fetch(`${API_URL}/items/merged`)
       .then(res => res.json())
       .then(items => setAllItems(items))
       .then(items => {
+        isLoggedIn ? setCurrentFilter(1) : setCurrentFilter(0);
         let filter = [];
         let working = [];
         for (let i = 0; i < allItems.length; i++) {
@@ -50,9 +61,6 @@ const Items = () => {
         console.log(working);
         setRows(working);
 
-
-
-
       })
       .catch(e => console.log(e))
   }, [currentFilter]);
@@ -63,6 +71,12 @@ const Items = () => {
           <div className="Item-Display">
           {(currentFilter === 0 || currentFilter === 1) &&
           <DataGrid
+            // onCellDoubleClick={(params, event) => {
+            //   if (!event.ctrlKey) {
+            //     event.defaultMuiPrevented = true;
+            //     console.log(params)
+            //   }
+            // }}
             getRowHeight={() => 'auto'}
             className="Result-Table"
             rows={rows}

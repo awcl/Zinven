@@ -1,6 +1,6 @@
 const config = {
   development: {
-      apiUrl: "http://localhost:3001"
+      apiUrl: "http://localhost:8080"
   },
   production: {
       apiUrl: process.env.REACT_APP_API_URL

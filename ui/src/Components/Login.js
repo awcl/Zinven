@@ -28,7 +28,7 @@ const Login = () => {
       if (res.status === 200) {
         document.cookie = `Zinven=${user}; Path=/;`;
         setIsLoggedIn(true);
-        setCurrentFilter(1);
+        setCurrentFilter(0);
         navigate('/');
       } else {
         e.target.pass.value = '';

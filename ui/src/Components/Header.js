@@ -10,9 +10,11 @@ const Header = () => {
   let navigate = useNavigate;
 
   useEffect(() => {
-    if (document.cookie) {
+    if (document.cookie || isLoggedIn) {
       setCurrentUser(document.cookie.split('=')[1]);
       setCurrentFilter(1);
+    } else {
+      setCurrentFilter(0);
     }
   }, [isLoggedIn]);
 

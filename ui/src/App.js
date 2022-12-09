@@ -4,16 +4,24 @@ import Items from './Components/Items';
 import Login from './Components/Login';
 import Onboard from './Components/Onboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Context from './Components/Context';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
   const [currentId, setCurrentId] = useState(0);
-  const [currentFilter, setCurrentFilter] = useState(0);
+  const [currentFilter, setCurrentFilter] = useState(-1);
   const [allItems, setAllItems] = useState([]);
   const [myItems, setMyItems] = useState([]);
+
+  useEffect(() => {
+        if (document.cookie.split('=')[0] === 'Zinven' || isLoggedIn) {
+          setCurrentFilter(1);
+        } else {
+          setCurrentFilter(0);
+        }
+  },[]);
 
   return (
     <div className="App">
