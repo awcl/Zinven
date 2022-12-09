@@ -10,27 +10,65 @@ app.use(cors()).use(express.json());
 const { hash, compare } = bcrypt;
 const SALTS = 12;
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { // Home, ensure functionality
   res.set("Access-Control-Allow-Origin", "*").status(200).send('Got / 🙂');
 });
 
-app.post ('/user', async (req, res) => {
+app.post('/user', async (req, res) => { // New User
   let num = (await knex('user').max('id as max').first()).max + 1;
   let hashed = await hash(req.body.password, SALTS);
   console.log(hashed);
   console.log(typeof hashed);
   knex('user')
-  .insert(
-    {
-      id: num,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      username: req.body.username,
-      password_hash: hashed
-    }
-  )
-  .then(res.set("Access-Control-Allow-Origin", "*").status(201).end())
-  .catch((e) => res.set("Access-Control-Allow-Origin", "*").status(500).end())
+    .insert(
+      {
+        id: num,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        username: req.body.username,
+        password_hash: hashed
+      }
+    )
+    .then(res.set("Access-Control-Allow-Origin", "*").status(201).end())
+    .catch((e) => res.set("Access-Control-Allow-Origin", "*").status(500).end())
+});
+
+app.patch('/user/:id', (req, res) => { // Update User
+  let { id } = req.params;
+  let hashed = await(knex('user').where('username', req.body.username).select('password_hash'));
+  try {
+    hashed = hashed[0].password_hash;
+    compare(req.body.password, hashed)
+      .then(match => {
+        if { match } {
+          knex('user')
+            .where('id', id)
+            .update({
+              first_name: req.body.first_name,
+              last_name: req.body.last_name,
+              username: req.body.username,
+              password_hash: hashed
+            })
+            .then(item => {
+              res.set("Access-Control-Allow-Origin", "*").status(200).end();
+            });
+        } else {
+          res.set("Access-Control-Allow-Origin", "*").status(403).end();
+        }
+      })
+  } catch (e) {
+    res.set("Access-Control-Allow-Origin", "*").status(500).end();
+  }
+});
+
+app.delete('/user/:id', (req, res) => { // Delete User
+  let { id } = req.params;
+  knex('user')
+    .where('id', id)
+    .del()
+    .then(item => {
+      res.set("Access-Control-Allow-Origin", "*").status(410).end();
+    });
 });
 
 app.get('/user/id/:username', (req, res) => { // User ID Query
@@ -43,12 +81,12 @@ app.get('/user/id/:username', (req, res) => { // User ID Query
     });
 });
 
-app.post ('/login', async (req, res) => {
+app.post('/login', async (req, res) => {
   let hashed = await (knex('user').where('username', req.body.username).select('password_hash'));
   try {
     hashed = hashed[0].password_hash;
     compare(req.body.password, hashed)
-      .then (match => {
+      .then(match => {
         match ? res.set("Access-Control-Allow-Origin", "*").status(200).end()
           : res.set("Access-Control-Allow-Origin", "*").status(403).end()
       })
@@ -70,7 +108,7 @@ app.get('/usernames', (req, res) => { // List All Users Usernames
     .select('username')
     .then(usernames => {
       res.set("Access-Control-Allow-Origin", "*").status(200).send(usernames);
-  });
+    });
 });
 
 app.get('/items', (req, res) => { // List All Items All Data
@@ -78,7 +116,7 @@ app.get('/items', (req, res) => { // List All Items All Data
     .select('*')
     .then(items => {
       res.set("Access-Control-Allow-Origin", "*").status(200).send(items);
-  });
+    });
 });
 
 app.get('/items/merged', (req, res) => { // List All Items With Merged Data from User Table
@@ -87,7 +125,7 @@ app.get('/items/merged', (req, res) => { // List All Items With Merged Data from
     .select('item.id', 'user_id', 'user.first_name', 'user.last_name', 'user.username', 'item.description', 'item.quantity')
     .then(items => {
       res.set("Access-Control-Allow-Origin", "*").status(200).send(items);
-  });
+    });
 });
 
 app.get('/items/user/:id', (req, res) => { // List All Items for User by ID
@@ -97,22 +135,22 @@ app.get('/items/user/:id', (req, res) => { // List All Items for User by ID
     .where('user_id', id)
     .then(items => {
       res.set("Access-Control-Allow-Origin", "*").status(200).send(items);
-  });
+    });
 });
 
 app.post('/item', async (req, res) => { // Add an Item
   let num = (await knex('item').max('id as max').first()).max + 1;
   knex('item')
-  .insert(
-    {
-      id: num,
-      user_id: req.body.user_id,
-      item_name: req.body.item_name,
-      description: req.body.description,
-      quantity: req.body.quantity
-    }
-  )
-  .then(res.set("Access-Control-Allow-Origin", "*").status(201).end())
+    .insert(
+      {
+        id: num,
+        user_id: req.body.user_id,
+        item_name: req.body.item_name,
+        description: req.body.description,
+        quantity: req.body.quantity
+      }
+    )
+    .then(res.set("Access-Control-Allow-Origin", "*").status(201).end())
 });
 
 app.get('/item/:id', (req, res) => { // Get Item by ID All Data
