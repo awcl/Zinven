@@ -30,7 +30,7 @@ const Login = () => {
         document.cookie = `Zinven=${user}; Path=/;`;
         setIsLoggedIn(true);
         setCurrentFilter(1);
-        navigate('/Home');
+          navigate('/Home');
       } else {
         e.target.pass.value = '';
         window.alert('Incorrect Entry 🙁')

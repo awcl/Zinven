@@ -15,14 +15,24 @@ textarea {
 .Result-Table {
   margin-top: 1vh;
   background-color: #222222;
-  border-color: #FFFFFF;
   font-size: calc(8px + 2vmin);
   color: #FFFFFF;
   width: 90vw;
+  opacity: 85%;
+}
+
+.MuiDataGrid-columnHeaders {
+  background-color: #000000;
 }
 
 .MuiDataGrid-row:nth-child(odd){
   background-color: #363636;
+}
+
+.MuiDataGrid-cellContent, .MuiTablePagination-displayedRows,
+.MuiDataGrid-columnHeaderTitle, .MuiSvgIcon-root {
+  color: #FFFFFF;
+  font-size: calc(7px + 1vmin);
 }
 
 .Header {
@@ -137,17 +147,6 @@ textarea {
   background: transparent;
   border: none;
 }
-
-/* <input id="itemName" className="Details-Item-Name" type="text" placeholder="Item Name" onBlur={(e) => trim(e)} disabled/>
-        <input id="itemId" className="Details-Item-Id" type="text" placeholder="Item ID" onBlur={(e) => trim(e)} disabled/>
-        <input id="owner" className="Details-Owner" type="text" placeholder="Owner" onBlur={(e) => trim(e)} disabled/>
-        <input id="username" className="Details-Username" type="text" placeholder="Username" onBlur={(e) => trim(e)} disabled/>
-        <input id="UserId" className="Details-User-Id" type="text" placeholder="User ID" onBlur={(e) => trim(e)} disabled/>
-        <input id="quantity" className="Details-Item-Quantity" type="number" placeholder="Item Quantity" onBlur={(e) => trim(e)}
-          onKeyDown={(e) => { return ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(e.code) ? true : !isNaN(Number(e.key))
-          && e.code !== 'Space' }} disabled/>
-        <textarea id="description" className="Details-Item-Description" type="text" placeholder="Item Description"
-          rows={5} onBlur={(e) => trim(e)} disabled/> */
 
 .Login-Field-User, .Login-Field-Pass, .Onboard-Field-First, .Onboard-Field-Last,
 .Onboard-Field-User, .Onboard-Field-Pass, .New-Item-Name, .New-Item-Description,

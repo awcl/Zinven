@@ -5,7 +5,7 @@ import Details from './Components/Details'
 import Login from './Components/Login';
 import Onboard from './Components/Onboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Context from './Components/Context';
 
 const App = () => {

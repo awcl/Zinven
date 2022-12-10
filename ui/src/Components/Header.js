@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useContext, useEffect } from 'react';
 import Context from './Context';
 import config from '../config';
-const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Header = () => {
   const { isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser, setMyItems, setCurrentFilter } = useContext(Context);

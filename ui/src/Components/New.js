@@ -6,7 +6,6 @@ import React, { useState, useContext, useEffect } from 'react';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const New = () => {
-  const [usernameList, setUsernameList] = useState([]);
   const { setIsLoggedIn, setCurrentFilter, currentId, setCurrentId } = useContext(Context);
   let navigate = useNavigate();
 
