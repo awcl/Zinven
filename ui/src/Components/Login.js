@@ -6,7 +6,7 @@ import config from '../config';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Login = () => {
-  const { isLoggedIn, setIsLoggedIn, currentFilter, setCurrentFilter } = useContext(Context);
+  const { isLoggedIn, setIsLoggedIn, setCurrentFilter } = useContext(Context);
   let navigate = useNavigate();
 
   useEffect(() => {

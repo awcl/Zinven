@@ -1,6 +1,6 @@
 import '../App.css';
 import Context from './Context';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 const ItemFilter = () => {
   const { isLoggedIn, currentFilter, setCurrentFilter } = useContext(Context);

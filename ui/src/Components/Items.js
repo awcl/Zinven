@@ -5,7 +5,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '../config';
 import New from './New';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Items = () => {
@@ -23,11 +23,12 @@ const Items = () => {
   const columns: GridColDef[] = [
     {field: 'item_id', headerName: 'Item ID', flex: 1, minWidth: 50 },
     {field: 'item_name', headerName: 'Item Name', flex: 1, minWidth: 50 },
+    {field: 'description', headerName: 'Item Description', flex: 1, minWidth: 150 },
     {field: 'user_id', headerName: 'User ID', flex: 1, minWidth: 50 },
     {field: 'owner', headerName: 'Owner', flex: 1, minWidth: 50 },
     {field: 'username', headerName: 'Username', flex: 1, minWidth: 50 },
     {field: 'quantity', headerName: 'Quantity', flex: 1, minWidth: 50 },
-    {field: 'description', headerName: 'Item Description', flex: 1, minWidth: 150 }
+
   ];
 
   useEffect(() => {

@@ -13,7 +13,6 @@ textarea {
 }
 
 .Result-Table {
-  margin-top: 1vh;
   background-color: #222222;
   font-size: calc(8px + 2vmin);
   color: #FFFFFF;
@@ -119,7 +118,7 @@ textarea {
 }
 
 
-.Login, .Onboard, .New, .Details, .Login-Entry, .Onboard-Entry, .New-Entry, .Details-Entry, .Details-Button-Box {
+.Login, .Onboard, .New, .Details, .Login-Entry, .Onboard-Entry, .New-Entry, .Details-Entry, .Details-Button-Box, .Items {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -143,7 +142,6 @@ textarea {
 }
 
 .All-Items, .My-Items, .Add-Item {
-  margin: 1vh 0vh 1vh 0vh;
   width: 30vw;
   height: 100%;
   font-size: calc(8px + 2vmin);
@@ -179,7 +177,7 @@ textarea {
 }
 
 .Onboard-Field-Last, .Onboard-Field-User, .New-Item-Description, .Details-Item-Name, .Details-Item-Id, .Details-Owner, .Details-Username,
-.Details-User-Id, .Details-Item-Quantity {
+.Details-User-Id, .Details-Item-Quantity, .New-Item-Quantity {
   margin: .5vh 0vh .5vh 4.5vh;
 }
 
@@ -187,12 +185,12 @@ textarea {
   margin: .5vh 0vh .5vh 4.5vh;
 }
 
-.New-Item-Quantity, .Details-Item-Description {
+.Details-Item-Description {
   margin: .5vh 0vh 1.5vh 4.5vh;
 }
 
-.New {
-  margin-top: 1vh;
+.New, .Result-Table {
+  margin-top: 3vh;
 }
 
 .Visibility-Container {

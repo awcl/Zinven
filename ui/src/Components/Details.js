@@ -6,7 +6,7 @@ import config from '../config';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Details = () => {
-  const { isLoggedIn, setIsLoggedIn, setCurrentFilter, currentUser, setCurrentUser } = useContext(Context);
+  const { setCurrentUser } = useContext(Context);
   const [editing, setEditing] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [itemIdText, setItemIdText] = useState('');

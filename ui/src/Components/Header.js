@@ -2,7 +2,6 @@ import '../App.css';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useContext, useEffect } from 'react';
 import Context from './Context';
-import config from '../config';
 
 const Header = () => {
   const { isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser, setMyItems, setCurrentFilter } = useContext(Context);

@@ -2,7 +2,7 @@ import '../App.css';
 import { useNavigate } from 'react-router-dom';
 import config from '../config';
 import Context from './Context';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const New = () => {
@@ -65,7 +65,6 @@ const New = () => {
             onKeyDown={(e) => { return ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(e.code) ? true : !isNaN(Number(e.key))
             && e.code !== 'Space' }} />
           <textarea id="description" className="New-Item-Description" type="text" placeholder="Item Description" rows={5} onBlur={(e) => trim(e)} />
-
         </div>
         <button className="New-Submit-Button">Create</button>
       </form>
