@@ -62,7 +62,7 @@ const Items = () => {
         setRows(working);
       })
       .catch(e => console.log(e))
-  }, [currentFilter, allItems, currentUser, setAllItems]);
+  }, [currentFilter, currentUser]);
 
     return (
         <div className="Items">
