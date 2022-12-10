@@ -52,7 +52,7 @@ const New = () => {
       }).catch(e => window.alert(e))
       if (res.status === 201) {
         setIsLoggedIn(true);
-        setCurrentFilter(2);
+        setCurrentFilter(1);
         navigate('/Home');
       }
     }

@@ -6,9 +6,8 @@ import config from '../config';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Details = () => {
-  const { isLoggedIn, setIsLoggedIn, setCurrentFilter, currentUser } = useContext(Context);
+  const { isLoggedIn, setIsLoggedIn, setCurrentFilter, currentUser, setCurrentUser } = useContext(Context);
   const [editing, setEditing] = useState(false);
-  const [canEdit, setCanEdit] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [itemIdText, setItemIdText] = useState('');
   const [ownerText, setOwnerText] = useState('');
@@ -21,6 +20,9 @@ const Details = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
+    try {
+      setCurrentUser(document.cookie.split('=')[1]);
+    } catch (e) {console.log(e)};
     fetch(`${API_URL}/items/merged`)
       .then(res => res.json())
       .then(item => {
@@ -34,19 +36,12 @@ const Details = () => {
             setItemNameText(item[i].item_name);
             setQuantityText(item[i].quantity);
             setDescriptionText(item[i].description);
-            console.log(`can edit ${canEdit} c ${currentUser} u ${usernameText}`)
           }
         }
       }).catch(e => {
         console.log(e);
         setIsValid(false);
       });
-
-      fetch(`${API_URL}/user/id/${currentUser}`)
-      .then(res => res.json())
-      .then(data => {
-        `${data[0].id}` === userIdText && setCanEdit(true);
-      }).catch(e => console.log(e))
     },[]);
 
   const trim = (e) => {
@@ -54,11 +49,41 @@ const Details = () => {
   }
 
   const deleteItem = async () => {
-
+    fetch(`${API_URL}/item/${id}`, {
+      method: 'DELETE'}
+      ).catch(e => console.log(e));
+    setEditing(false);
+    navigate('/Home');
   }
 
   const editItem = async () => {
+    let itemName = document.getElementById('itemName').value;
+    let descriptionIn = document.getElementById('description').value;
+    let quantityIn = document.getElementById('quantity').value;
 
+    if (itemName === '' || descriptionIn === '' || quantityIn === '') {
+      window.alert(`You've left a field blank 🙁`);
+    } else if (!(/^[0-9]+$/).test(quantityIn)) {
+      window.alert(`Your quantity can only be numeric 🙁`);
+    } else if (itemName.length > 50 || quantityIn.length > 50) {
+      window.alert(`Item Name and Quantity fields cannot exceed 50 characters 🙁`);
+    } else if (descriptionIn.length > 500) {
+      window.alert(`The Item Description field cannot exceed 500 characters 🙁`);
+    } else {
+      var res = await fetch(`${API_URL}/item/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          item_id: +id,
+          item_name: itemName,
+          description: descriptionIn,
+          quantity: quantityIn
+        })
+      }).catch(e => window.alert(e))
+      if (res.status === 200) {
+        setEditing(false);
+      }
+    }
   }
 
   return (
@@ -85,15 +110,15 @@ const Details = () => {
           <textarea id="description" className="Details-Item-Description" type="text" placeholder="Item Description"
             rows={5} onBlur={(e) => trim(e)} disabled={!editing} defaultValue={descriptionText}/>
         </div>
-        {canEdit ? (
+        {(usernameText === document.cookie.split('=')[1]) ? (
           <>
             <button className="Details-Edit-Button" onClick={() => { setEditing(true) }} hidden={editing}>Edit</button>
             {editing && (
               <>
                 <div className="Details-Button-Box">
-                  <button className="Details-Cancel-Button" onClick={() => { setEditing(false) }}>Cancel</button>
-                  <button className="Details-Save-Button" onClick={() => { setEditing(false) }}>Save</button>
-                  <button className="Details-Delete-Button" onClick={() => { setEditing(false) }}>Delete</button>
+                  <button className="Details-Cancel-Button" onClick={() => setEditing(false)}>Cancel</button>
+                  <button className="Details-Save-Button" onClick={() => editItem()}>Save</button>
+                  <button className="Details-Delete-Button" onClick={() => deleteItem()}>Delete</button>
                 </div>
               </>
             )}

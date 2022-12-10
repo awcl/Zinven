@@ -6,7 +6,7 @@ import config from '../config';
 const API_URL = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 const Login = () => {
-  const { isLoggedIn, setIsLoggedIn, setCurrentFilter } = useContext(Context);
+  const { isLoggedIn, setIsLoggedIn, currentFilter, setCurrentFilter } = useContext(Context);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +29,8 @@ const Login = () => {
       if (res.status === 200) {
         document.cookie = `Zinven=${user}; Path=/;`;
         setIsLoggedIn(true);
-        setCurrentFilter(0);
+        //setCurrentFilter(1);
+        console.log(currentFilter)
         navigate('/Home');
       } else {
         e.target.pass.value = '';

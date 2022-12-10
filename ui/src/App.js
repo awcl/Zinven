@@ -5,7 +5,7 @@ import Details from './Components/Details'
 import Login from './Components/Login';
 import Onboard from './Components/Onboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Context from './Components/Context';
 
 const App = () => {
@@ -14,12 +14,11 @@ const App = () => {
   const [currentId, setCurrentId] = useState(0);
   const [currentFilter, setCurrentFilter] = useState(3);
   const [allItems, setAllItems] = useState([]);
-  const [myItems, setMyItems] = useState([]);
 
   return (
     <div className="App">
       <Context.Provider value={{isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser, currentFilter,
-        setCurrentFilter, allItems, setAllItems, myItems, setMyItems, currentId, setCurrentId}}>
+        setCurrentFilter, allItems, setAllItems, currentId, setCurrentId}}>
         <Router>
           <Header />
           <div className="Content">

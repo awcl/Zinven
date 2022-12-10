@@ -13,14 +13,14 @@ const Header = () => {
     if (document.cookie) {
       setCurrentUser(document.cookie.split('=')[1]);
       setCurrentFilter(1);
-      document.cookie.split('=')[0] === 'Zinven' && setIsLoggedIn(true);
-
+      setIsLoggedIn(true);
     } else {
       setCurrentFilter(0);
+      setIsLoggedIn(false);
     }
   }, [isLoggedIn]);
 
-  const logout = () => {
+  const logout = async () => {
     document.cookie = `Zinven=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
     setCurrentUser('');
     setCurrentFilter(0);
@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
       <div className="Header">
-        <Link to={'/Home'} className="Header-Title">Zinven</Link>
+        <Link to={'/Home'} className="Header-Title" >Zinven</Link>
         {currentUser && (<div className="Header-Greeting">Hello {currentUser} 🙂</div>)}
         {isLoggedIn ?
           (<Link to={'/'} className="Header-Logout" onClick={() => logout()}>Logout</Link>)
