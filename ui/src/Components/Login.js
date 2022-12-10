@@ -25,12 +25,11 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({username: user, password: pass})
       }).catch(e => window.alert(e))
-      console.log(res)
+
       if (res.status === 200) {
         document.cookie = `Zinven=${user}; Path=/;`;
         setIsLoggedIn(true);
-        //setCurrentFilter(1);
-        console.log(currentFilter)
+        setCurrentFilter(1);
         navigate('/Home');
       } else {
         e.target.pass.value = '';

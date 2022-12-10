@@ -28,7 +28,6 @@ const Details = () => {
       .then(item => {
         for (let i = 0; i < item.length; i++) {
           if (item[i].id === +id) {
-            console.log(item[i]);
             setItemIdText(item[i].id);
             setOwnerText(`${item[i].first_name} ${item[i].last_name}`);
             setUsernameText(item[i].username);
