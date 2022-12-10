@@ -20,7 +20,7 @@ const New = () => {
   }, []);
 
   const trim = (e) => {
-    e.target.value = e.target.value.trim().replace(/\s\s+/g, ' '); // Remove space doubletaps additionally
+    e.target.value = e.target.value.trim().replace(/\s\s+/g, ' ');
   }
 
   const newSubmit = async (e) => {
@@ -53,7 +53,7 @@ const New = () => {
       if (res.status === 201) {
         setIsLoggedIn(true);
         setCurrentFilter(2);
-        navigate('/');
+        navigate('/Home');
       }
     }
   }
@@ -62,9 +62,11 @@ const New = () => {
       <form className="New-Container" onSubmit={(e) => newSubmit(e)}>
         <div className="New-Entry">
           <input id="itemname" className="New-Item-Name" type="text" placeholder="Item Name" onBlur={(e) => trim(e)} />
-          <textarea id="description" className="New-Item-Description" type="text" placeholder="Item Description" rows={5} onBlur={(e) => trim(e)} />
           <input id="quantity" className="New-Item-Quantity" type="number" placeholder="Item Quantity" onBlur={(e) => trim(e)}
-            onKeyDown={(e) => { return ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(e.code) ? true : !isNaN(Number(e.key)) && e.code !== 'Space' }} />
+            onKeyDown={(e) => { return ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(e.code) ? true : !isNaN(Number(e.key))
+            && e.code !== 'Space' }} />
+          <textarea id="description" className="New-Item-Description" type="text" placeholder="Item Description" rows={5} onBlur={(e) => trim(e)} />
+
         </div>
         <button className="New-Submit-Button">Create</button>
       </form>

@@ -10,7 +10,7 @@ const Login = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    isLoggedIn && navigate('/');
+    isLoggedIn && navigate('/Home');
   },[]);
 
   const loginSubmit = async (e) => {
@@ -29,7 +29,7 @@ const Login = () => {
         document.cookie = `Zinven=${user}; Path=/;`;
         setIsLoggedIn(true);
         setCurrentFilter(0);
-        navigate('/');
+        navigate('/Home');
       } else {
         e.target.pass.value = '';
         window.alert('Incorrect Entry 🙁')

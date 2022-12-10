@@ -49,22 +49,36 @@ textarea {
 
 .Header-Title:hover, .Header-Login:hover, .Header-Logout:hover, .Login-Submit-Button:hover,
 .New-Account-Link:hover, .Onboard-Submit-Button:hover, .Password-Requirements:hover,
-.All-Items:hover, .My-Items:hover, .Add-Item:hover, .New-Submit-Button:hover {
+.All-Items:hover, .My-Items:hover, .Add-Item:hover, .New-Submit-Button:hover,
+.Details-Edit-Button:hover, .Details-Cancel-Button:hover, .Details-Save-Button:hover,
+.Details-Delete-Button:hover {
   cursor: pointer;
   opacity: 60%;
 }
 
 .Header-Title:active, .Header-Login:active, .Header-Logout:active, .Login-Submit-Button:active,
 .New-Account-Link:active, .Onboard-Submit-Button:active, .Password-Requirements:active,
-.All-Items:active, .My-Items:active, .Add-Item:active, .New-Submit-Button:active {
+.All-Items:active, .My-Items:active, .Add-Item:active, .New-Submit-Button:active,
+.Details-Edit-Button:active, .Details-Cancel-Button:active, .Details-Save-Button:active,
+.Details-Delete-Button:active {
   opacity: 60%;
   scale:90%;
 }
 
-.Login-Submit-Button, .Onboard-Submit-Button, .New-Submit-Button {
+.Login-Submit-Button, .Onboard-Submit-Button, .New-Submit-Button, .Details-Edit-Button, .Cant-Edit-Button {
   color: #FFFFFF;
   margin: 0vh 0vh 0vh 0vh;
-  width: 30%;
+  width: 30vw;
+  font-size: calc(8px + 2vmin);
+  background-color: transparent;
+  border: none;
+}
+
+.Details-Cancel-Button, .Details-Save-Button, .Details-Delete-Button {
+  color: #FFFFFF;
+  margin: 0vh 0vh 0vh 0vh;
+  height: 33%;
+  width: 100%;
   font-size: calc(8px + 2vmin);
   background-color: transparent;
   border: none;
@@ -91,18 +105,27 @@ textarea {
 }
 
 
-.Login, .Onboard, .New {
+.Login, .Onboard, .New, .Details, .Login-Entry, .Onboard-Entry, .New-Entry, .Details-Entry, .Details-Button-Box {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.Item-Filter, .Login-Container, .Onboard-Container, .New-Container {
+.Login-Entry, .Onboard-Entry, .New-Entry, .Details-Entry {
+  width: 70%;
+}
+
+.Item-Filter, .Login-Container, .Onboard-Container, .New-Container,
+.Details-Container {
   background-color: #222222;
   display: flex;
   flex-direction: row;
   width: 90vw;
   border-radius: 1rem;
+}
+
+.Details-Button-Box {
+  width:30vw;
 }
 
 .All-Items, .My-Items, .Add-Item {
@@ -115,16 +138,21 @@ textarea {
   border: none;
 }
 
-.Login-Entry, .Onboard-Entry, .New-Entry {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  justify-self: left;
-}
+/* <input id="itemName" className="Details-Item-Name" type="text" placeholder="Item Name" onBlur={(e) => trim(e)} disabled/>
+        <input id="itemId" className="Details-Item-Id" type="text" placeholder="Item ID" onBlur={(e) => trim(e)} disabled/>
+        <input id="owner" className="Details-Owner" type="text" placeholder="Owner" onBlur={(e) => trim(e)} disabled/>
+        <input id="username" className="Details-Username" type="text" placeholder="Username" onBlur={(e) => trim(e)} disabled/>
+        <input id="UserId" className="Details-User-Id" type="text" placeholder="User ID" onBlur={(e) => trim(e)} disabled/>
+        <input id="quantity" className="Details-Item-Quantity" type="number" placeholder="Item Quantity" onBlur={(e) => trim(e)}
+          onKeyDown={(e) => { return ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(e.code) ? true : !isNaN(Number(e.key))
+          && e.code !== 'Space' }} disabled/>
+        <textarea id="description" className="Details-Item-Description" type="text" placeholder="Item Description"
+          rows={5} onBlur={(e) => trim(e)} disabled/> */
 
 .Login-Field-User, .Login-Field-Pass, .Onboard-Field-First, .Onboard-Field-Last,
 .Onboard-Field-User, .Onboard-Field-Pass, .New-Item-Name, .New-Item-Description,
-.New-Item-Quantity {
+.New-Item-Quantity, .Details-Item-Name, .Details-Item-Id, .Details-Owner, .Details-Username,
+ .Details-User-Id, .Details-Item-Quantity, .Details-Item-Description {
  background: transparent;
  color: #FFFFFF;
  border: hidden;
@@ -136,7 +164,9 @@ textarea {
 .Login-Field-User:focus, .Login-Field-Pass:focus, .Onboard-Field-First:focus,
 .Onboard-Field-Last:focus, .Onboard-Field-User:focus, .Onboard-Field-Pass:focus,
 .All-Items:focus, .My-Items:focus, .Add-Item:focus, .New-Item-Name:focus,
- .New-Item-Description:focus, .New-Item-Quantity:focus {
+ .New-Item-Description:focus, .New-Item-Quantity:focus, .Details-Item-Name:focus,
+ .Details-Item-Id:focus, .Details-Owner:focus, .Details-Username:focus,
+ .Details-User-Id:focus, .Details-Item-Quantity:focus, .Details-Item-Description:focus {
   outline: none;
   border-color: #FFFFFF;
 }
@@ -145,7 +175,8 @@ textarea {
   margin: 1.5vh 0vh .5vh 4.5vh;
 }
 
-.Onboard-Field-Last, .Onboard-Field-User, .New-Item-Description {
+.Onboard-Field-Last, .Onboard-Field-User, .New-Item-Description, .Details-Item-Name, .Details-Item-Id, .Details-Owner, .Details-Username,
+.Details-User-Id, .Details-Item-Quantity {
   margin: .5vh 0vh .5vh 4.5vh;
 }
 
@@ -153,7 +184,7 @@ textarea {
   margin: .5vh 0vh .5vh 4.5vh;
 }
 
-.New-Item-Quantity {
+.New-Item-Quantity, .Details-Item-Description {
   margin: .5vh 0vh 1.5vh 4.5vh;
 }
 
@@ -181,4 +212,11 @@ textarea {
   margin: 0vh 5vh 0vh auto;
   color: #FFFFFF;
   text-decoration: none;
+}
+
+.Details-Info {
+  color: #b6b6b6;
+  text-align: center;
+  width: 100%;
+  text-decoration:underline;
 }

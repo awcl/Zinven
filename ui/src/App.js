@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './Components/Header';
 import Items from './Components/Items';
+import Details from './Components/Details'
 import Login from './Components/Login';
 import Onboard from './Components/Onboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -23,8 +24,9 @@ const App = () => {
           <Header />
           <div className="Content">
             <Routes>
-              <Route path="/" element={<Items />} />
-              <Route path="/Login" element={<Login />} />
+              <Route path="/Home" element={<Items />} />
+              <Route path="/Details/:id" element={<Details />} />
+              <Route path="/" element={<Login />} />
               <Route path="/Onboard" element={<Onboard />} />
               </Routes>
           </div>

@@ -65,7 +65,7 @@ const createSubmit = async (e) => {
         document.cookie = `Zinven=${user}; Path=/;`;
         setIsLoggedIn(true);
         setCurrentFilter(1);
-        navigate('/');
+        navigate('/Home');
       }
     }
   }

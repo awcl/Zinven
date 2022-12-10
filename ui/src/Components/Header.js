@@ -31,12 +31,12 @@ const Header = () => {
 
   return (
       <div className="Header">
-        <Link to={'/'} className="Header-Title">Zinven</Link>
+        <Link to={'/Home'} className="Header-Title">Zinven</Link>
         {currentUser && (<div className="Header-Greeting">Hello {currentUser} 🙂</div>)}
         {isLoggedIn ?
           (<Link to={'/'} className="Header-Logout" onClick={() => logout()}>Logout</Link>)
         :
-          (<Link to={'/Login'} className="Header-Login">Login</Link>)
+          (<Link to={'/'} className="Header-Login">Login</Link>)
         }
       </div>
   );
