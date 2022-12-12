@@ -16,7 +16,7 @@ cd Zinven
 docker compose up
 ```
 * [Frontend Default](http://localhost:3000/)
-* [Backend Default](https://localhost:3001/)
+* [Backend Default](https://localhost:8080/)
 ### Online
 The production application is hosted by [render](https://render.com/)
 ## ERD
