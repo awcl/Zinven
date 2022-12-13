@@ -13,6 +13,7 @@ Zinven enables Inventory Manager publication of available assets for other Inven
 ```bash
 git clone git@github.com:awcl/Zinven.git
 cd Zinven
+cd ui && npm i && cd ../api && npm i
 docker compose up
 ```
 * [Frontend Default](http://localhost:3000/)
