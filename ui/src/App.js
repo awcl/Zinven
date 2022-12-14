@@ -12,7 +12,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
   const [currentId, setCurrentId] = useState(0);
-  const [currentFilter, setCurrentFilter] = useState(3);
+  const [currentFilter, setCurrentFilter] = useState(0);
   const [allItems, setAllItems] = useState([]);
 
   return (
